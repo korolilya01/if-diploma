@@ -5,7 +5,7 @@ import { Input } from '../Input';
 
 import './Header.scss';
 
-export const Header = () => {
+export const Header = ({ children }) => {
   return (
     <header className="header">
       <Icon className="header__logo" iconHref="#logo" />
@@ -17,10 +17,7 @@ export const Header = () => {
         name="searchBook"
         placeholder="Search by author, title, name"
       />
-      <nav className="header__nav">
-        <span className="header__nav-link">Log in</span>
-        <span className="header__nav-link">Sign up</span>
-      </nav>
+      <nav className="header__nav">{children}</nav>
     </header>
   );
 };

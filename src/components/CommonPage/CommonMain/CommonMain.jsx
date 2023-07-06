@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { Button } from '../Button';
+import { Button } from '../../Button';
 
-import './Main.scss';
+import './CommonMain.scss';
 
-export const Main = () => {
+export const CommonMain = () => {
   return (
     <main className="main">
       <div className="main__container">

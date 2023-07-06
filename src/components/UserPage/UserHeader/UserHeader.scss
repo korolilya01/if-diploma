@@ -1,0 +1,29 @@
+.header {
+  &__nav {
+    min-width: fit-content;
+    &-container {
+      display: flex;
+      gap: 32px;
+      @media (max-width: 1024px) {
+        gap: 20px;
+      }
+    }
+    &-link {
+      color: var(--black);
+    }
+    &-account {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      border: 1px solid #b5b5b5;
+      background:
+        url(../../../../public/png/account.png),
+        lightgray 50% / cover no-repeat;
+    }
+    &-accountArrow {
+      width: 16px;
+      height: 10px;
+      margin: 16px 0 0 -16px;
+    }
+  }
+}

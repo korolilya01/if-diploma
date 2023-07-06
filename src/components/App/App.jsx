@@ -1,17 +1,15 @@
 import React from 'react';
-import { Header } from '../Header';
+
+import { CommonPage } from '../CommonPage';
 import { Sprites } from '../Sprites';
-import { Container } from '../Container';
-import { Main } from '../Main';
+import { UserPage } from '../UserPage';
 
 export function App() {
   return (
     <>
       <Sprites />
-      <Container>
-        <Header />
-        <Main />
-      </Container>
+      <CommonPage />
+      <UserPage />
     </>
   );
 }
