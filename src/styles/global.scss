@@ -1,0 +1,20 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  border: none;
+  line-height: normal;
+}
+:root {
+  --white: #fff;
+  --black: #000;
+  --general-blue: #85c8ee;
+  --secondary-blue: #d3ebf9;
+  --grey: #616161;
+  --secondary-grey: #b5b5b5;
+  --general-red: #ff5d4f;
+}
+@font-face {
+  font-family: Roboto;
+  src: url(../fonts/OpenSans-regular.ttf) format('ttf'), local('Open Sans');
+}

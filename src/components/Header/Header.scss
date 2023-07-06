@@ -1,0 +1,37 @@
+.header {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  &__logo {
+    width: 172px;
+    height: 32px;
+  }
+  &__search {
+    background-image: url('../../../public/svg/search.svg');
+    background-repeat: no-repeat;
+    background-position: 16px;
+    height: 48px;
+    padding: 12px 0 12px 48px;
+    width: 500px;
+    border-radius: 8px;
+    border: 2px solid var(--secondary-grey);
+    margin: 0 auto;
+    &:focus {
+      border-color: var(--general-red);
+      outline: none;
+    }
+  }
+  &__nav {
+    color: var(--grey);
+    display: flex;
+    gap: 48px;
+    font-size: 20px;
+    font-weight: 700;
+    &-link {
+      &:hover {
+        cursor: pointer;
+        color: var(--secondary-grey);
+      }
+    }
+  }
+}
