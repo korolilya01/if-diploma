@@ -11,6 +11,12 @@ export const Sprites = () => {
           fill="#616161"
         />
       </symbol>
+      <symbol id="cross" viewBox="0 0 16 16">
+        <path
+          d="M16 2.5805L14.3886 0.971375L8 7.3508L1.61143 0.971375L0 2.5805L6.38857 8.95992L0 15.3393L1.61143 16.9485L8 10.569L14.3886 16.9485L16 15.3393L9.61143 8.95992L16 2.5805Z"
+          fill="#B5B5B5"
+        />
+      </symbol>
       <symbol id="menu" viewBox="0 0 24 16">
         <path
           d="M0 16H24V13.3333H0V16ZM0 9.33333H24V6.66667H0V9.33333ZM0 0V2.66667H24V0H0Z"

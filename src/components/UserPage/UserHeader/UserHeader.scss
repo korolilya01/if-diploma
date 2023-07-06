@@ -4,12 +4,10 @@
     &-container {
       display: flex;
       gap: 32px;
+      color: var(--black);
       @media (max-width: 1024px) {
         gap: 20px;
       }
-    }
-    &-link {
-      color: var(--black);
     }
     &-account {
       width: 36px;

@@ -11,6 +11,7 @@ export const Input = memo(function Input({
   content,
   placeholder,
   value,
+  pattern,
   onChange,
   required = null,
 }) {
@@ -22,6 +23,7 @@ export const Input = memo(function Input({
       <input
         id={id}
         name={name}
+        pattern={pattern}
         type={type}
         className={inputClassName}
         placeholder={placeholder}
