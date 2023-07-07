@@ -2,7 +2,7 @@ export const INITIAL_STATE = {
   authState: {
     name: '',
     email: '',
-    birthday: '',
+    birthdate: '',
     password: '',
   },
 };

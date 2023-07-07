@@ -1,20 +1,18 @@
 import React from 'react';
-
-import { Button } from '../../Button';
-import { Icon } from '../../Icon';
-import { Input } from '../../Input';
-
-import { registration } from '../../../store/slices/authorization.slice';
 import { useDispatch, useSelector } from 'react-redux';
+
+import { AuthForm } from '../AuthForm';
+
 import { authSelector } from '../../../store/selectors/authorization.selector';
-
+import { useCommonPageContext } from '../../CommonPage/CommonPage.context';
 import { config } from './config';
-
-import './SingUp.scss';
+import { registration } from '../../../store/slices/authorization.slice';
 
 export const SingUp = () => {
   const dispatch = useDispatch();
   const state = useSelector(authSelector);
+
+  const { setIsRegistrationOpen } = useCommonPageContext();
 
   const onChange = (e) => {
     const value = e.target.value;
@@ -22,32 +20,18 @@ export const SingUp = () => {
     dispatch(registration({ [name]: value }));
   };
 
-  const onSubmit = (e) => {
-    e.preventDefault();
+  const closeSingUp = () => {
+    setIsRegistrationOpen(false);
   };
 
   return (
-    <form className="form" onSubmit={onSubmit}>
-      <Icon iconHref="#cross" className="form__cross" />
-      <div className="form__container">
-        <p className="form__title">Welcome to Fox Library</p>
-        {config.map((item) => {
-          return (
-            <Input
-              key={item.name}
-              {...item}
-              value={state[item.name]}
-              labelId={item.name}
-              id={item.name}
-              content={item.name}
-              labelClassName="form__label"
-              inputClassName="form__input"
-              onChange={onChange}
-            />
-          );
-        })}
-        <Button className="form__button" content="Sign up" />
-      </div>
-    </form>
+    <AuthForm
+      onChange={onChange}
+      array={config}
+      state={state}
+      buttonTitle="Sing Up"
+      title="Welcome to Fox Library"
+      closeField={closeSingUp}
+    />
   );
 };
