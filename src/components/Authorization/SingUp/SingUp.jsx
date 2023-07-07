@@ -1,18 +1,19 @@
 import React from 'react';
+
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import { AuthForm } from '../AuthForm';
 
 import { authSelector } from '../../../store/selectors/authorization.selector';
-import { useCommonPageContext } from '../../CommonPage/CommonPage.context';
-import { config } from './config';
 import { registration } from '../../../store/slices/authorization.slice';
+
+import { config } from './config';
 
 export const SingUp = () => {
   const dispatch = useDispatch();
   const state = useSelector(authSelector);
-
-  const { setIsRegistrationOpen } = useCommonPageContext();
+  const navigate = useNavigate();
 
   const onChange = (e) => {
     const value = e.target.value;
@@ -20,8 +21,9 @@ export const SingUp = () => {
     dispatch(registration({ [name]: value }));
   };
 
-  const closeSingUp = () => {
-    setIsRegistrationOpen(false);
+  const onSubmit = (e) => {
+    e.preventDefault();
+    navigate('/login');
   };
 
   return (
@@ -31,7 +33,7 @@ export const SingUp = () => {
       state={state}
       buttonTitle="Sing Up"
       title="Welcome to Fox Library"
-      closeField={closeSingUp}
+      onSubmit={onSubmit}
     />
   );
 };

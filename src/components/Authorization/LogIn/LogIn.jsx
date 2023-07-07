@@ -1,29 +1,56 @@
-import React from 'react';
+import React, { useState } from 'react';
+
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import { AuthForm } from '../AuthForm';
 
-import { useCommonPageContext } from '../../CommonPage/CommonPage.context';
-import { config } from './config';
+import { authSelector } from '../../../store/selectors/authorization.selector';
+
+import { config, initialState } from './config';
 
 export const LogIn = () => {
-  const { setIsLogInOpen } = useCommonPageContext();
-  const state = [
-    {
-      name: '',
-      password: '',
-    },
-  ];
-  const closeLogIn = () => {
-    setIsLogInOpen(false);
+  const [formState, setFormState] = useState(initialState);
+  const [passwordError, setPasswordError] = useState(false);
+
+  const navigate = useNavigate();
+  const state = useSelector(authSelector);
+
+  const onChange = (e) => {
+    const value = e.target.value;
+    const name = e.target.name;
+
+    setFormState((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    if (
+      formState.name === state.name &&
+      formState.password === state.password
+    ) {
+      navigate('/userPage');
+    } else {
+      setPasswordError(true);
+      setTimeout(() => {
+        setPasswordError(false);
+      }, 500);
+    }
   };
 
   return (
     <AuthForm
       array={config}
-      state={state}
+      state={formState}
       title="Log In to Fox Library"
       buttonTitle="Log In"
-      closeField={closeLogIn}
+      onSubmit={onSubmit}
+      onChange={onChange}
+      passwordError={passwordError}
     />
   );
 };

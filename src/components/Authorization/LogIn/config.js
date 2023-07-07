@@ -14,3 +14,7 @@ export const config = [
     type: 'password',
   },
 ];
+export const initialState = {
+  name: '',
+  password: '',
+};

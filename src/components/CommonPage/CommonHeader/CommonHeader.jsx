@@ -11,7 +11,6 @@ export const CommonHeader = () => {
   const showDropdown = () => {
     setIsVisible(!isVisible);
   };
-
   return (
     <Header>
       <HeaderLinks className="header__nav-link-hidden" />
