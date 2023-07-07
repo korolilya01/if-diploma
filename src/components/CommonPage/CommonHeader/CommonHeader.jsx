@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 
+import { Dropdown } from './Dropdown';
 import { Header } from '../../Header';
 import { HeaderLinks } from './HeaderLinks';
 import { Icon } from '../../Icon';
-
-import { Dropdown } from './Dropdown';
 
 export const CommonHeader = () => {
   const [isVisible, setIsVisible] = useState(false);

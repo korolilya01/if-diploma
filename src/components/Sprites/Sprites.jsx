@@ -5,9 +5,15 @@ import './Sprites.scss';
 export const Sprites = () => {
   return (
     <svg className="sprites" xmlns="http://www.w3.org/2000/svg">
-      <symbol id="account" viewBox="0 0 16 10">
+      <symbol id="arrowDown" viewBox="0 0 16 10">
         <path
           d="M14.12 0L8 6.10667L1.88 0L0 1.88L8 9.88L16 1.88L14.12 0Z"
+          fill="#616161"
+        />
+      </symbol>
+      <symbol id="arrowUp" viewBox="0 0 16 10">
+        <path
+          d="M8 0L0 8L1.88 9.88L8 3.77333L14.12 9.88L16 8L8 0Z"
           fill="#616161"
         />
       </symbol>

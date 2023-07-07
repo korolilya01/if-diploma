@@ -1,14 +1,14 @@
 .dropdown {
   position: relative;
   &__container {
+    color: var(--secondary-grey);
     background-color: var(--white);
     border-radius: 8px;
-    border: 2px solid var(--secondary-grey);
     position: absolute;
     top: calc(100% + 36px);
     right: -28px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: start;
   }
 }

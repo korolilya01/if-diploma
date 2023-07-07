@@ -2,6 +2,7 @@
   &__nav {
     min-width: fit-content;
     &-container {
+      position: relative;
       display: flex;
       gap: 32px;
       color: var(--black);
@@ -13,7 +14,7 @@
       width: 36px;
       height: 36px;
       border-radius: 8px;
-      border: 1px solid #b5b5b5;
+      border: 1px solid var(--secondary-grey);
       background:
         url(../../../../public/png/account.png),
         lightgray 50% / cover no-repeat;
