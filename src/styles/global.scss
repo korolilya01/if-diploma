@@ -4,6 +4,8 @@
   margin: 0;
   border: none;
   color: var(--black);
+  font-weight: 400;
+  line-height: normal;
 }
 :root {
   --white: #fff;
@@ -14,6 +16,7 @@
   --grey: #616161;
   --secondary-grey: #b5b5b5;
   --general-red: #ff5d4f;
+  --secondary-red: #fd7474e8;
 }
 @font-face {
   font-family: Roboto;
@@ -21,18 +24,13 @@
     url(../fonts/OpenSans-regular.ttf) format('ttf'),
     local('Open Sans');
 }
-p {
-  margin: 0;
-  font-weight: 400;
-  line-height: normal;
-}
 a {
   text-decoration: none;
-  font-weight: 400;
-  line-height: normal;
 }
 ul {
   list-style-type: none;
   padding: 0;
-  margin: 0;
+}
+input[type=email] {
+  text-decoration-line: underline;
 }

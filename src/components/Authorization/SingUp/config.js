@@ -7,6 +7,15 @@ export const config = [
     required: true,
   },
   {
+    name: 'birthdate',
+    labelName: 'Your birthdate',
+    userLabelName: 'Birthdate',
+    placeholder: 'DD.MM.YYYY',
+    pattern: '^\\d{2}\\.\\d{2}\\.\\d{4}$',
+    required: true,
+    type: 'text',
+  },
+  {
     name: 'email',
     labelName: 'Email',
     placeholder: 'userEmail@gmail.com',
@@ -15,18 +24,10 @@ export const config = [
     required: true,
   },
   {
-    name: 'birthdate',
-    labelName: 'Your birthdate',
-    placeholder: 'DD.MM.YYYY',
-    pattern: '^\\d{2}\\.\\d{2}\\.\\d{4}$',
-    required: true,
-    type: 'text',
-  },
-  {
     name: 'password',
     labelName: 'Password',
     placeholder: 'Password',
     required: true,
-    type: 'password',
+    type: 'text',
   },
 ];

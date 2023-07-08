@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { useSelector } from 'react-redux';
 import { authSelector } from '../../../../store/selectors/authorization.selector';
@@ -12,7 +12,7 @@ import classNames from 'classnames';
 
 export const DropdownUser = ({ isVisible }) => {
   const state = useSelector(authSelector);
-
+  const navigate = useNavigate();
   return (
     isVisible && (
       <div className="dropdownUser">
@@ -34,6 +34,7 @@ export const DropdownUser = ({ isVisible }) => {
             All books
           </Link>
           <Button
+            onClick={() => navigate('/')}
             className="dropdownUser__button"
             content="Log out"
             buttonName="logout"

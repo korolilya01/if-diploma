@@ -10,6 +10,7 @@ import { CommonPage } from '../components/CommonPage';
 import { LogIn } from '../components/Authorization/LogIn';
 import { SingUp } from '../components/Authorization/SingUp';
 import { UserPage } from '../components/UserPage';
+import { Settings } from '../components/Settings';
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -18,7 +19,9 @@ export const router = createBrowserRouter(
         <Route path="/login" element={<LogIn />} />
         <Route path="/singup" element={<SingUp />} />
       </Route>
-      <Route path="/userPage" element={<UserPage />} />
+      <Route element={<UserPage />}>
+        <Route path="/settings" element={<Settings />} />
+      </Route>
     </Route>,
   ),
 );

@@ -11,7 +11,7 @@ export const config = [
     labelName: 'Password',
     placeholder: 'Password',
     required: true,
-    type: 'password',
+    type: 'text',
   },
 ];
 export const initialState = {

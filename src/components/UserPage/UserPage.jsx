@@ -1,20 +1,19 @@
 import React from 'react';
 
-import { UserHeader } from './UserHeader';
-// import { UserMain } from './UserMain';
-import { Footer } from '../Footer';
-import { Container } from '../Container';
 import { Outlet } from 'react-router-dom';
+
+import { Container } from '../Container';
+import { Footer } from '../Footer';
+import { UserHeader } from './UserHeader';
 
 import './UserPage.scss';
 
 export const UserPage = () => {
   return (
     <div className="userPage">
-      <Outlet />
       <Container>
         <UserHeader />
-        {/*<UserMain />*/}
+        <Outlet />
       </Container>
       <Footer />
     </div>

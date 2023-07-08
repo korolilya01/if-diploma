@@ -3,6 +3,7 @@ export const INITIAL_STATE = {
     name: '',
     email: '',
     birthdate: '',
+    newPassword: '',
     password: '',
   },
 };

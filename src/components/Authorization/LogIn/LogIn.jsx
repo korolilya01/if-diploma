@@ -33,7 +33,7 @@ export const LogIn = () => {
       formState.name === state.name &&
       formState.password === state.password
     ) {
-      navigate('/userPage');
+      navigate('/settings');
     } else {
       setPasswordError(true);
       setTimeout(() => {

@@ -58,6 +58,10 @@
     height: 48px;
     border-radius: 8px;
     background: var(--general-red);
+    cursor: pointer;
+    &:hover {
+      opacity: 0.8;
+    }
     @media (max-width: 768px) {
       width: 136px;
       height: 40px;

@@ -41,6 +41,10 @@
     @media (max-width: 1024px) {
       font-size: 14px;
     }
+    &-set {
+      color: var(--black);
+      font-weight: 600;
+    }
   }
   &__input {
     height: 44px;
