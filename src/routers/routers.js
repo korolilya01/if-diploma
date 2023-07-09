@@ -12,6 +12,7 @@ import { SingUp } from '../components/Authorization/SingUp';
 import { UserPage } from '../components/UserPage';
 import { Settings } from '../components/Settings';
 import { Allbooks } from '../components/Allbooks';
+import { BookPage } from '../components/BookPage';
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -22,6 +23,7 @@ export const router = createBrowserRouter(
       </Route>
       <Route element={<UserPage />}>
         <Route path="/allbooks" element={<Allbooks />} />
+        <Route path="/bookPage/:id" element={<BookPage />} />
         <Route path="/settings" element={<Settings />} />
       </Route>
     </Route>,
