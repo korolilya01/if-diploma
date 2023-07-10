@@ -1,0 +1,27 @@
+.yourBooksCard {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid red;
+  font-size: 12px;
+  &__img {
+    width: 122px;
+    height: 185px;
+    border-radius: 8px;
+    border: 1px solid var(--secondary-grey);
+    margin-bottom: 8px;
+  }
+  &__title {
+  }
+  &__author {
+  }
+  &__rating {
+  }
+  &__button {
+    padding: 8px 24px;
+    border-radius: 8px;
+    background: var(--secondary-grey);
+    color: var(--white);
+    font-size: 12px;
+    font-weight: 600;
+  }
+}

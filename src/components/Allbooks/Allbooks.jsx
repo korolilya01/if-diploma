@@ -15,26 +15,13 @@ export const Allbooks = () => {
   useEffect(() => {
     getBooks().then((response) => setBooks(response));
   }, []);
-  console.log(books);
+
   const showMoreBooks = () => {
     setShowMore(true);
   };
   const showLessBooks = () => {
     setShowMore(false);
   };
-
-  // const getRating = () => {
-  //   const num = Math.random() * 10;
-  //   if (num > 5) {
-  //     return Math.ceil(num / 2);
-  //   }
-  //   return Math.ceil(num);
-  // };
-
-  // for (let i = 0; i < books.length; i++) {
-  //   books[i].rating = getRating();
-  // }
-  // console.log(books);
 
   return (
     <BooksContainer array={books} title="All books">
