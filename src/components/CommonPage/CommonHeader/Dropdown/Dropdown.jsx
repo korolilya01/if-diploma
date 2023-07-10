@@ -1,6 +1,8 @@
 import React from 'react';
 
-import { HeaderLinks } from '../HeaderLinks';
+import { NavLink } from 'react-router-dom';
+
+import { headerMenu } from '../config';
 
 import './Dropdown.scss';
 
@@ -9,7 +11,18 @@ export const Dropdown = ({ isVisible }) => {
     isVisible && (
       <div className="dropdown">
         <div className="dropdown__container">
-          <HeaderLinks />
+          {' '}
+          {headerMenu.map((item) => {
+            return (
+              <NavLink
+                key={item.path}
+                to={item.path}
+                className="dropdown__link"
+              >
+                {item.content}
+              </NavLink>
+            );
+          })}
         </div>
       </div>
     )

@@ -1,41 +1,55 @@
 import React, { useState } from 'react';
 
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import { DropdownUser } from './Dropdown';
 import { Header } from '../../Header';
 import { Icon } from '../../Icon';
+
+import { headerMenu } from './config';
 
 import './UserHeader.scss';
 import classNames from 'classnames';
 
 export const UserHeader = () => {
   const [isVisible, setIsVisible] = useState(false);
+
   const showDropdownUser = () => {
     setIsVisible(!isVisible);
   };
+
   return (
     <Header>
-      <div className="header__nav-container">
-        <Link
-          to="/allbooks"
-          className={classNames('header__nav-link', 'header__nav-link-hidden')}
-        >
-          All books
-        </Link>
-        <Link
-          to="/orders"
-          className={classNames('header__nav-link', 'header__nav-link-hidden')}
-        >
-          Your orders
-        </Link>
+      <div className="userHeader__nav-container">
+        {headerMenu.map((item) => {
+          return (
+            <NavLink
+              key={item.path}
+              to={item.path}
+              className={({ isActive }) =>
+                classNames(
+                  'userHeader__nav-link',
+                  'userHeader__nav-link-hidden',
+                  {
+                    'userHeader__nav-link-active': isActive,
+                  },
+                )
+              }
+            >
+              {item.content}
+            </NavLink>
+          );
+        })}
       </div>
-      <div className="header__nav-container">
+      <div className="userHeader__nav-container">
         <DropdownUser isVisible={isVisible} />
-        <span onClick={showDropdownUser} className="header__nav-account"></span>
+        <span
+          onClick={showDropdownUser}
+          className="userHeader__nav-account"
+        ></span>
         <Icon
           iconHref={isVisible ? '#arrowUp' : '#arrowDown'}
-          className="header__nav-accountArrow"
+          className="userHeader__nav-accountArrow"
         />
       </div>
     </Header>

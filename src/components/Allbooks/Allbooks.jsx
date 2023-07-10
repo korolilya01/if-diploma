@@ -1,42 +1,51 @@
 import React, { useEffect, useState } from 'react';
 
+import { BooksContainer } from '../BooksContainer';
 import { Button } from '../Button';
-import { Card } from './Card';
 
 import { getBooks } from '../../services';
 
 import './Allbooks.scss';
+import classNames from 'classnames';
 
 export const Allbooks = () => {
   const [books, setBooks] = useState([]);
-
-  const [booksPerSlide, setBooksPerSlide] = useState(4);
+  const [showMore, setShowMore] = useState(false);
 
   useEffect(() => {
     getBooks().then((response) => setBooks(response));
   }, []);
-
+  console.log(books);
   const showMoreBooks = () => {
-    setBooksPerSlide((prevState) => prevState + 4);
+    setShowMore(true);
+  };
+  const showLessBooks = () => {
+    setShowMore(false);
   };
 
+  // const getRating = () => {
+  //   const num = Math.random() * 10;
+  //   if (num > 5) {
+  //     return Math.ceil(num / 2);
+  //   }
+  //   return Math.ceil(num);
+  // };
+
+  // for (let i = 0; i < books.length; i++) {
+  //   books[i].rating = getRating();
+  // }
+  // console.log(books);
+
   return (
-    <section className="allBooks">
-      <h2 className="allBooks__title">All books</h2>
-      <div className="allBooks__container">
-        {books.slice(0, booksPerSlide).map((item) => {
-          return (
-            <div key={item.id}>
-              <Card {...item} />
-            </div>
-          );
-        })}
-      </div>
+    <BooksContainer array={books} title="All books">
       <Button
-        onClick={showMoreBooks}
-        className="allBooks__button"
-        content="Show more"
+        onClick={!showMore ? showMoreBooks : showLessBooks}
+        className={classNames(
+          'allBooks__button',
+          !showMore ? 'allBooks__button-more' : 'allBooks__button-less',
+        )}
+        content={!showMore ? 'Show more' : 'Show less'}
       />
-    </section>
+    </BooksContainer>
   );
 };

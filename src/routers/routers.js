@@ -13,6 +13,7 @@ import { UserPage } from '../components/UserPage';
 import { Settings } from '../components/Settings';
 import { Allbooks } from '../components/Allbooks';
 import { BookPage } from '../components/BookPage';
+import { YourOrders } from '../components/YourOrders';
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -25,6 +26,7 @@ export const router = createBrowserRouter(
         <Route path="/allbooks" element={<Allbooks />} />
         <Route path="/bookPage/:id" element={<BookPage />} />
         <Route path="/settings" element={<Settings />} />
+        <Route path="/orders" element={<YourOrders />} />
       </Route>
     </Route>,
   ),

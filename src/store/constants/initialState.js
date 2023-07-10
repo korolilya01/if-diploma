@@ -6,4 +6,5 @@ export const INITIAL_STATE = {
     newPassword: '',
     password: '',
   },
+  allBooks: [],
 };

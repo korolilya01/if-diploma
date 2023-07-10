@@ -3,6 +3,7 @@ import storage from 'redux-persist/lib/storage';
 import { persistReducer } from 'redux-persist';
 
 import { authReducer } from './authorization.slice';
+import { allBooksReducer } from './allBooks.slice';
 
 const persistConfig = {
   key: 'root',
@@ -13,5 +14,6 @@ export const rootReducer = persistReducer(
   persistConfig,
   combineReducers({
     authorization: authReducer,
+    getAllBooks: allBooksReducer,
   }),
 );
