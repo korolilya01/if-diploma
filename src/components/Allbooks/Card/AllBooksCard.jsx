@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { Link } from 'react-router-dom';
 
@@ -16,9 +16,15 @@ export const AllBooksCard = ({ ...item }) => {
     released,
     description,
     addChosenBook,
-    status,
   } = item;
   const [bookName] = name.split(':'); //cut the book's name to ':'
+
+  const [status, setStatus] = useState(false);
+
+  const addBook = () => {
+    addChosenBook();
+    setStatus(true);
+  };
 
   return (
     <div className="allBooksCard__books">
@@ -46,9 +52,9 @@ export const AllBooksCard = ({ ...item }) => {
         <p className="allBooksCard__desc-author">by {author}</p>
         <div className="allBooksCard__desc-rating"></div>
         <Button
-          onClick={addChosenBook}
+          onClick={addBook}
           className="allBooksCard__desc-order"
-          content={status ? 'Return' : 'Order'}
+          content="Order"
         />
       </div>
     </div>

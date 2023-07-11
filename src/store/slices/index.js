@@ -4,6 +4,7 @@ import { persistReducer } from 'redux-persist';
 
 import { authReducer } from './authorization.slice';
 import { yourBooksReducer } from './yourBooks.slice';
+import { waitingBooksReducer } from './waitingBooks.slice';
 
 const persistConfig = {
   key: 'root',
@@ -15,5 +16,6 @@ export const rootReducer = persistReducer(
   combineReducers({
     authorization: authReducer,
     yourBooks: yourBooksReducer,
+    waitingBooks: waitingBooksReducer,
   }),
 );

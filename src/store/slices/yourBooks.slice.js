@@ -14,7 +14,6 @@ const yourBooksSlice = createSlice({
     removeYourBooksSlice: (state, action) => {
       const bookId = action.payload;
       const index = state.findIndex((book) => book.id === bookId);
-      //if we find index -> we'll remote element
       if (index !== -1) {
         state.splice(index, 1);
       }

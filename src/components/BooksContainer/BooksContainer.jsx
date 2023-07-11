@@ -6,6 +6,7 @@ import {
   addYourBooksSlice,
   removeYourBooksSlice,
 } from '../../store/slices/yourBooks.slice';
+import { addWaitingBooksSlice } from '../../store/slices/waitingBooks.slice';
 import { getYourBooksSelector } from '../../store/selectors/yourBooks.selector';
 
 import { AllBooksCard } from '../Allbooks/Card';
@@ -24,14 +25,16 @@ export const BooksContainer = ({
   const dispatch = useDispatch();
   const yourBooksList = useSelector(getYourBooksSelector);
 
-  const removeBook = (book) => {
-    dispatch(removeYourBooksSlice(book.id));
+  const removeBook = (item) => {
+    dispatch(removeYourBooksSlice(item.id));
   };
 
   const addBook = (book) => {
     for (let i = 0; i < yourBooksList.length; i++) {
       if (yourBooksList[i].id === book.id) {
-        return null;
+        dispatch(addWaitingBooksSlice(book));
+        removeBook(book);
+        return;
       }
     }
     dispatch(addYourBooksSlice(book));
