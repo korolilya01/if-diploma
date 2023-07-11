@@ -16,29 +16,34 @@ export const YourBooksCard = ({ ...item }) => {
     length,
     released,
     description,
+    removeChosenBook,
   } = item;
   const [bookName] = name.split(':'); //cut the book's name to ':'
 
   return (
-    <Link
-      to={`/bookPage/:${id}`}
-      state={{
-        imageUrl,
-        author,
-        name,
-        bookName,
-        length,
-        released,
-        description,
-      }}
-    >
-      <div className="yourBooksCard">
+    <div className="yourBooksCard">
+      <Link
+        to={`/bookPage/:${id}`}
+        state={{
+          imageUrl,
+          author,
+          name,
+          bookName,
+          length,
+          released,
+          description,
+        }}
+      >
         <img className="yourBooksCard__img" src={imageUrl} alt={name} />
-        <p className="yourBooksCard__title">{bookName}</p>
-        <p className="yourBooksCard__author">by {author}</p>
-        <div className="yourBooksCard__rating"></div>
-        <Button className="yourBooksCard__button" content={buttonName} />
-      </div>
-    </Link>
+      </Link>
+      <p className="yourBooksCard__title">{bookName}</p>
+      <p className="yourBooksCard__author">by {author}</p>
+      <div className="yourBooksCard__rating"></div>
+      <Button
+        onClick={removeChosenBook}
+        className="yourBooksCard__button"
+        content={buttonName}
+      />
+    </div>
   );
 };

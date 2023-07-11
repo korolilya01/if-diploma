@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { addYourBooksSlice } from '../../store/slices/yourBooks.slice';
+import {
+  addYourBooksSlice,
+  removeYourBooksSlice,
+} from '../../store/slices/yourBooks.slice';
 import { getYourBooksSelector } from '../../store/selectors/yourBooks.selector';
 
 import { AllBooksCard } from '../Allbooks/Card';
@@ -18,11 +21,12 @@ export const BooksContainer = ({
   message,
   buttonName,
 }) => {
-  const [isAvailable, setIsAvailable] = useState(true);
-
   const dispatch = useDispatch();
   const yourBooksList = useSelector(getYourBooksSelector);
-  console.log(yourBooksList);
+
+  const removeBook = (book) => {
+    dispatch(removeYourBooksSlice(book.id));
+  };
 
   const addBook = (book) => {
     for (let i = 0; i < yourBooksList.length; i++) {
@@ -31,25 +35,24 @@ export const BooksContainer = ({
       }
     }
     dispatch(addYourBooksSlice(book));
-    setIsAvailable(false);
   };
 
   return (
     <section className="booksContainer">
       <h2 className="booksContainer__title">{title}</h2>
       <div className="booksContainer__container">
-        {array ? (
+        {array.length !== 0 ? (
           array.map((item) => {
             return (
               <div key={item.id} className={className}>
                 {title === 'All books' ? (
-                  <AllBooksCard
-                    {...item}
-                    addChooseBook={() => addBook(item)}
-                    isAvailable={isAvailable}
-                  />
+                  <AllBooksCard {...item} addChosenBook={() => addBook(item)} />
                 ) : (
-                  <YourBooksCard {...item} buttonName={buttonName} />
+                  <YourBooksCard
+                    {...item}
+                    buttonName={buttonName}
+                    removeChosenBook={() => removeBook(item)}
+                  />
                 )}
               </div>
             );
