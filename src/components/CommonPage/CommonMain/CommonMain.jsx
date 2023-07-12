@@ -1,10 +1,14 @@
 import React from 'react';
 
+import { useNavigate } from 'react-router-dom';
+
 import { Button } from '../../Button';
 
 import './CommonMain.scss';
 
 export const CommonMain = () => {
+  const navigate = useNavigate();
+
   return (
     <main className="main">
       <div className="main__container">
@@ -14,10 +18,11 @@ export const CommonMain = () => {
           literature
         </h2>
         <Button
+          onClick={() => navigate('/checkAccount')}
           className="main__button"
           buttonName="start"
           type="submit"
-          content={<p className="main__button-style">Let’s start</p>}
+          content="Let’s start"
         />
       </div>
     </main>

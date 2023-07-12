@@ -8,7 +8,7 @@ import { registration } from '../../store/slices/authorization.slice';
 import { Button } from '../Button';
 import { Input } from '../Input';
 
-import { config } from '../Authorization/SingUp/config';
+import { config } from '../Authorization/SignUp/config';
 
 import './Settings.scss';
 import classNames from 'classnames';

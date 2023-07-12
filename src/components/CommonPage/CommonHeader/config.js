@@ -4,7 +4,7 @@ export const headerMenu = [
     content: 'Log in',
   },
   {
-    path: '/singup',
+    path: '/signup',
     content: 'Sign up',
   },
 ];

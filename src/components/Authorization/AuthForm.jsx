@@ -8,6 +8,7 @@ import { Input } from '../Input';
 
 import './AuthForm.scss';
 import classNames from 'classnames';
+import { Notification } from '../Notification';
 
 export const AuthForm = ({
   title,
@@ -15,7 +16,6 @@ export const AuthForm = ({
   buttonTitle,
   state,
   onChange,
-  closeField,
   onSubmit,
   passwordError,
 }) => {
@@ -24,14 +24,10 @@ export const AuthForm = ({
       <form className="form" onSubmit={onSubmit}>
         <Link to="/">
           {' '}
-          <Icon
-            onClick={closeField}
-            iconHref="#cross"
-            className="form__cross"
-          />
+          <Icon iconHref="#cross" className="form__cross" />
         </Link>
         <div className="form__container">
-          <p className="form__title">{title}</p>
+          <h2 className="form__title">{title}</h2>
           {array.map((item) => {
             const { name, labelName } = item;
             return (
@@ -48,6 +44,7 @@ export const AuthForm = ({
               />
             );
           })}
+          {passwordError && <Notification message="User not found" />}
           <Button
             className={classNames(
               'form__button',

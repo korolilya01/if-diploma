@@ -32,20 +32,21 @@ export const LogIn = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    for (let i = 0; i < accounts.length; i++) {
-      if (
-        formState.name === accounts[i].name &&
-        formState.password === accounts[i].password
-      ) {
-        dispatch(registration(accounts[i]));
-        navigate('/allbooks');
-        return;
-      } else {
-        setPasswordError(true);
-        setTimeout(() => {
-          setPasswordError(false);
-        }, 500);
-      }
+
+    const userFound = accounts.some(
+      (account) =>
+        account.name === formState.name &&
+        account.password === formState.password,
+    );
+
+    if (userFound) {
+      dispatch(registration(formState));
+      navigate('/allbooks');
+    } else {
+      setPasswordError(true);
+      setTimeout(() => {
+        setPasswordError(false);
+      }, 2000);
     }
   };
 

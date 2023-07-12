@@ -12,7 +12,7 @@ import { AuthForm } from '../AuthForm';
 
 import { config } from './config';
 
-export const SingUp = () => {
+export const SignUp = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -35,7 +35,7 @@ export const SingUp = () => {
       onChange={onChange}
       array={config}
       state={state}
-      buttonTitle="Sing Up"
+      buttonTitle="Sign Up"
       title="Welcome to Fox Library"
       onSubmit={onSubmit}
     />
