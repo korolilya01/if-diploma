@@ -6,7 +6,9 @@ import {
   addYourBooksSlice,
   removeYourBooksSlice,
 } from '../../store/slices/yourBooks.slice';
+import { addBookStatusSlice } from '../../store/slices/status.slice';
 import { addWaitingBooksSlice } from '../../store/slices/waitingBooks.slice';
+
 import { getYourBooksSelector } from '../../store/selectors/yourBooks.selector';
 
 import { AllBooksCard } from '../Allbooks/Card';
@@ -38,6 +40,7 @@ export const BooksContainer = ({
       }
     }
     dispatch(addYourBooksSlice(book));
+    dispatch(addBookStatusSlice({ id: book.id, status: true }));
   };
 
   return (

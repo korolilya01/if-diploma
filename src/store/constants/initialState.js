@@ -1,4 +1,5 @@
 export const INITIAL_STATE = {
+  accounts: [],
   authState: {
     name: '',
     email: '',
@@ -8,4 +9,6 @@ export const INITIAL_STATE = {
   },
   yourBooks: [],
   waitingBooks: [],
+  rating: [],
+  status: {},
 };

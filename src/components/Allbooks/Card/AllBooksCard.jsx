@@ -1,6 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
+
+import { useSelector } from 'react-redux';
 
 import { Link } from 'react-router-dom';
+
+import { getBookStatusSelector } from '../../../store/selectors/bookStatus.selector';
 
 import { Button } from '../../Button';
 
@@ -19,12 +23,7 @@ export const AllBooksCard = ({ ...item }) => {
   } = item;
   const [bookName] = name.split(':'); //cut the book's name to ':'
 
-  const [status, setStatus] = useState(false);
-
-  const addBook = () => {
-    addChosenBook();
-    setStatus(true);
-  };
+  const bookStatus = useSelector(getBookStatusSelector);
 
   return (
     <div className="allBooksCard__books">
@@ -43,7 +42,7 @@ export const AllBooksCard = ({ ...item }) => {
         <img className="allBooksCard__img" src={imageUrl} alt={name} />
       </Link>
       <div className="allBooksCard__desc">
-        {status ? (
+        {bookStatus[id] ? (
           <div className="allBooksCard__desc-statusTaken">Taken</div>
         ) : (
           <div className="allBooksCard__desc-statusAvailable">Available</div>
@@ -52,7 +51,7 @@ export const AllBooksCard = ({ ...item }) => {
         <p className="allBooksCard__desc-author">by {author}</p>
         <div className="allBooksCard__desc-rating"></div>
         <Button
-          onClick={addBook}
+          onClick={addChosenBook}
           className="allBooksCard__desc-order"
           content="Order"
         />

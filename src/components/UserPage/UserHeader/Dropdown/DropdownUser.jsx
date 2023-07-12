@@ -3,6 +3,7 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { useSelector } from 'react-redux';
+
 import { authSelector } from '../../../../store/selectors/authorization.selector';
 
 import { Button } from '../../../Button';
@@ -11,8 +12,10 @@ import './DropdownUser.scss';
 import classNames from 'classnames';
 
 export const DropdownUser = ({ isVisible }) => {
-  const state = useSelector(authSelector);
   const navigate = useNavigate();
+
+  const state = useSelector(authSelector);
+
   return (
     isVisible && (
       <div className="dropdownUser">

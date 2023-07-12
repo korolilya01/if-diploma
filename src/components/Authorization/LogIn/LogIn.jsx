@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { AuthForm } from '../AuthForm';
+import { registration } from '../../../store/slices/authorization.slice';
 
-import { authSelector } from '../../../store/selectors/authorization.selector';
+import { getAccountsSelector } from '../../../store/selectors/accounts.selector';
+
+import { AuthForm } from '../AuthForm';
 
 import { config, initialState } from './config';
 
@@ -14,7 +16,9 @@ export const LogIn = () => {
   const [passwordError, setPasswordError] = useState(false);
 
   const navigate = useNavigate();
-  const state = useSelector(authSelector);
+  const dispatch = useDispatch();
+
+  const accounts = useSelector(getAccountsSelector);
 
   const onChange = (e) => {
     const value = e.target.value;
@@ -28,17 +32,20 @@ export const LogIn = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-
-    if (
-      formState.name === state.name &&
-      formState.password === state.password
-    ) {
-      navigate('/allbooks');
-    } else {
-      setPasswordError(true);
-      setTimeout(() => {
-        setPasswordError(false);
-      }, 500);
+    for (let i = 0; i < accounts.length; i++) {
+      if (
+        formState.name === accounts[i].name &&
+        formState.password === accounts[i].password
+      ) {
+        dispatch(registration(accounts[i]));
+        navigate('/allbooks');
+        return;
+      } else {
+        setPasswordError(true);
+        setTimeout(() => {
+          setPasswordError(false);
+        }, 500);
+      }
     }
   };
 

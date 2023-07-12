@@ -3,17 +3,20 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { AuthForm } from '../AuthForm';
+import { addAccountSlice } from '../../../store/slices/accounts.slice';
+import { registration } from '../../../store/slices/authorization.slice';
 
 import { authSelector } from '../../../store/selectors/authorization.selector';
-import { registration } from '../../../store/slices/authorization.slice';
+
+import { AuthForm } from '../AuthForm';
 
 import { config } from './config';
 
 export const SingUp = () => {
   const dispatch = useDispatch();
-  const state = useSelector(authSelector);
   const navigate = useNavigate();
+
+  const state = useSelector(authSelector);
 
   const onChange = (e) => {
     const value = e.target.value;
@@ -23,6 +26,7 @@ export const SingUp = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    dispatch(addAccountSlice(state));
     navigate('/login');
   };
 
