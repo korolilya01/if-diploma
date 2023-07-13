@@ -6,9 +6,9 @@ export const INITIAL_STATE = {
     birthdate: '',
     newPassword: '',
     password: '',
+    yourBooks: [],
+    waitingBooks: [],
   },
-  yourBooks: [],
-  waitingBooks: [],
   rating: [],
   status: {},
 };

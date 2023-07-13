@@ -42,7 +42,7 @@ export const AllBooksCard = ({ ...item }) => {
         <img className="allBooksCard__img" src={imageUrl} alt={name} />
       </Link>
       <div className="allBooksCard__desc">
-        {bookStatus[id] ? (
+        {bookStatus[id] /*checking if the book is taken*/ ? (
           <div className="allBooksCard__desc-statusTaken">Taken</div>
         ) : (
           <div className="allBooksCard__desc-statusAvailable">Available</div>

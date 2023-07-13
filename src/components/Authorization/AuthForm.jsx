@@ -23,7 +23,6 @@ export const AuthForm = ({
     <div className="form-block">
       <form className="form" onSubmit={onSubmit}>
         <Link to="/">
-          {' '}
           <Icon iconHref="#cross" className="form__cross" />
         </Link>
         <div className="form__container">
@@ -44,6 +43,7 @@ export const AuthForm = ({
               />
             );
           })}
+          {/*massage if password or name are incorrect*/}
           {passwordError && <Notification message="User not found" />}
           <Button
             className={classNames(

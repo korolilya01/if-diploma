@@ -13,14 +13,14 @@ import { config, initialState } from './config';
 
 export const LogIn = () => {
   const [formState, setFormState] = useState(initialState);
-  const [passwordError, setPasswordError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false); //name and password validation
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const accounts = useSelector(getAccountsSelector);
 
-  const onChange = (e) => {
+  const changeFormInputValue = (e) => {
     const value = e.target.value;
     const name = e.target.name;
 
@@ -30,13 +30,14 @@ export const LogIn = () => {
     }));
   };
 
-  const onSubmit = (e) => {
+  const sendData = (e) => {
     e.preventDefault();
 
+    //name and password checking
     const userFound = accounts.some(
       (account) =>
-        account.name === formState.name &&
-        account.password === formState.password,
+        account.name === formState.name && //an account from redux after registration
+        account.password === formState.password, //fromState from state, always clean
     );
 
     if (userFound) {
@@ -45,7 +46,7 @@ export const LogIn = () => {
     } else {
       setPasswordError(true);
       setTimeout(() => {
-        setPasswordError(false);
+        setPasswordError(false); //return the state for a new attempt if password or name are incorrect
       }, 2000);
     }
   };
@@ -56,8 +57,8 @@ export const LogIn = () => {
       state={formState}
       title="Log In to Fox Library"
       buttonTitle="Log In"
-      onSubmit={onSubmit}
-      onChange={onChange}
+      onSubmit={sendData}
+      onChange={changeFormInputValue}
       passwordError={passwordError}
     />
   );

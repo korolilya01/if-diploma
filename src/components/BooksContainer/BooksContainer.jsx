@@ -2,14 +2,16 @@ import React from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
+import { addBookStatusSlice } from '../../store/slices/bookStatus.slice';
 import {
-  addYourBooksSlice,
+  addWaitingBooks,
+  addYourBooks,
   removeYourBooksSlice,
-} from '../../store/slices/yourBooks.slice';
-import { addBookStatusSlice } from '../../store/slices/status.slice';
-import { addWaitingBooksSlice } from '../../store/slices/waitingBooks.slice';
+} from '../../store/slices/accounts.slice';
 
-import { getYourBooksSelector } from '../../store/selectors/yourBooks.selector';
+import { authSelector } from '../../store/selectors/authorization.selector';
+import { getAccountsSelector } from '../../store/selectors/accounts.selector';
+import { getBookStatusSelector } from '../../store/selectors/bookStatus.selector';
 
 import { AllBooksCard } from '../Allbooks/Card';
 import { YourBooksCard } from '../YourOrders/Card';
@@ -25,22 +27,33 @@ export const BooksContainer = ({
   buttonName,
 }) => {
   const dispatch = useDispatch();
-  const yourBooksList = useSelector(getYourBooksSelector);
+
+  const yourBooksList = useSelector(getAccountsSelector);
+  const auth = useSelector(authSelector);
+  const status = useSelector(getBookStatusSelector);
 
   const removeBook = (item) => {
-    dispatch(removeYourBooksSlice(item.id));
+    dispatch(removeYourBooksSlice(item.id)); //remove a book from during user's list
+    dispatch(addBookStatusSlice({ id: item.id, status: false })); //add a status 'available' to the book
   };
 
   const addBook = (book) => {
-    for (let i = 0; i < yourBooksList.length; i++) {
-      if (yourBooksList[i].id === book.id) {
-        dispatch(addWaitingBooksSlice(book));
-        removeBook(book);
-        return;
+    const user = yourBooksList.find((item) => auth.email === item.email); //find an object with data for during user
+
+    const booksList = user.yourBooks; // checking yourBooksList
+    const idNew = book.id;
+
+    //check book status
+    if (status[idNew]) {
+      //check if the book in the list
+      if (!booksList.includes(book)) {
+        dispatch(addWaitingBooks({ name: auth.name, payload: book })); //add a book to 'Waiting for' list
       }
+      return;
     }
-    dispatch(addYourBooksSlice(book));
-    dispatch(addBookStatusSlice({ id: book.id, status: true }));
+
+    dispatch(addYourBooks({ name: auth.name, payload: book })); //add a book to 'List of your books' list
+    dispatch(addBookStatusSlice({ id: book.id, status: true })); //add a status 'taken' to the book if during user is first
   };
 
   return (

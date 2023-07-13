@@ -2,16 +2,21 @@ import React from 'react';
 
 import { useSelector } from 'react-redux';
 
-import { getYourBooksSelector } from '../../store/selectors/yourBooks.selector';
-import { getWaitingBooksSelector } from '../../store/selectors/waitingBooks.selector';
+import { authSelector } from '../../store/selectors/authorization.selector';
+import { getAccountsSelector } from '../../store/selectors/accounts.selector';
 
 import { BooksContainer } from '../BooksContainer';
 
 import './YourOrders.scss';
 
 export const YourOrders = () => {
-  const yourBooksList = useSelector(getYourBooksSelector);
-  const waitingBooksList = useSelector(getWaitingBooksSelector);
+  const accounts = useSelector(getAccountsSelector);
+  const auth = useSelector(authSelector);
+
+  const suchUser = accounts.find((item) => auth.email === item.email); //find an object for during user
+
+  const yourBooksList = suchUser.yourBooks;
+  const waitingBooksList = suchUser.waitingBooks;
 
   return (
     <>

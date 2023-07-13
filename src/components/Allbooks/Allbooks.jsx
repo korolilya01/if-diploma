@@ -13,7 +13,7 @@ export const Allbooks = () => {
   const [showMore, setShowMore] = useState(false);
 
   useEffect(() => {
-    getBooks().then((response) => setBooks(response));
+    getBooks().then((response) => setBooks(response)); //getting books from server
   }, []);
 
   const showMoreBooks = () => {

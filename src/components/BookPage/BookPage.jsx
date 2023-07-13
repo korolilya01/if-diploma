@@ -11,8 +11,17 @@ export const BookPage = () => {
 
   const location = useLocation();
   const { state } = location;
-  const { imageUrl, author, name, length, released, description, bookName } =
+  const {
+    imageUrl,
+    author,
+    name,
+    length,
+    released,
+    description,
+    bookName,
+  } = //state destructuring
     state;
+
   const pureDesc = description.replace(/<\/?p>/g, ``).replace(/<br\/?>/g, ''); //deleted <p></p> and <br> from description
 
   const onClickShowMore = () => {

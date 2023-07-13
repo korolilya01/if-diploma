@@ -18,13 +18,13 @@ export const SignUp = () => {
 
   const state = useSelector(authSelector);
 
-  const onChange = (e) => {
+  const changeFormInputValue = (e) => {
     const value = e.target.value;
     const name = e.target.name;
     dispatch(registration({ [name]: value }));
   };
 
-  const onSubmit = (e) => {
+  const sendData = (e) => {
     e.preventDefault();
     dispatch(addAccountSlice(state));
     navigate('/login');
@@ -32,12 +32,12 @@ export const SignUp = () => {
 
   return (
     <AuthForm
-      onChange={onChange}
+      onChange={changeFormInputValue}
       array={config}
       state={state}
       buttonTitle="Sign Up"
       title="Welcome to Fox Library"
-      onSubmit={onSubmit}
+      onSubmit={sendData}
     />
   );
 };
