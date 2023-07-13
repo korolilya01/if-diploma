@@ -49,7 +49,7 @@ export const BooksContainer = ({
       if (!booksList.includes(book)) {
         dispatch(addWaitingBooks({ name: auth.name, payload: book })); //add a book to 'Waiting for' list
       }
-      return;
+      return; //if the book is already in the list, do nothing
     }
 
     dispatch(addYourBooks({ name: auth.name, payload: book })); //add a book to 'List of your books' list

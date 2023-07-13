@@ -20,10 +20,12 @@
   width: fit-content;
   position: absolute;
   z-index: 1;
-  top: 74%;
-  left: 0;
   padding: 12px;
   border-radius: 4px;
   background-color: var(--secondary-blue);
   animation: notification 1.5s linear;
+  &__authForm {
+    top: 74%;
+    left: 0;
+  }
 }

@@ -44,7 +44,12 @@ export const AuthForm = ({
             );
           })}
           {/*massage if password or name are incorrect*/}
-          {passwordError && <Notification message="User not found" />}
+          {passwordError && (
+            <Notification
+              className="notification__authForm"
+              message="User not found"
+            />
+          )}
           <Button
             className={classNames(
               'form__button',

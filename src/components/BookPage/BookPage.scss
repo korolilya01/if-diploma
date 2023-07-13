@@ -36,7 +36,6 @@
     }
     &-order {
       border-radius: 8px;
-      background: var(--general-red);
       padding: 12px 64px;
       width: fit-content;
       color: var(--white);
@@ -64,3 +63,5 @@
     }
   }
 }
+.taken {background: var(--secondary-grey)}
+.available {background: var(--general-red)}

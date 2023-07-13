@@ -9,6 +9,7 @@ import { getBookStatusSelector } from '../../../store/selectors/bookStatus.selec
 import { Button } from '../../Button';
 
 import './AllBookCards.scss';
+import classNames from 'classnames';
 
 export const AllBooksCard = ({ ...item }) => {
   const {
@@ -30,6 +31,7 @@ export const AllBooksCard = ({ ...item }) => {
       <Link
         to={`/bookPage/:${id}`}
         state={{
+          id,
           imageUrl,
           author,
           name,
@@ -52,7 +54,10 @@ export const AllBooksCard = ({ ...item }) => {
         <div className="allBooksCard__desc-rating"></div>
         <Button
           onClick={addChosenBook}
-          className="allBooksCard__desc-order"
+          className={classNames(
+            'allBooksCard__desc-order',
+            bookStatus[id] ? 'taken' : 'available',
+          )}
           content="Order"
         />
       </div>

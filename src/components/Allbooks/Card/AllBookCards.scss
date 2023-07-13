@@ -22,6 +22,7 @@
     border: 1px solid var(--secondary-grey);
   }
   &__desc {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -48,10 +49,11 @@
     &-order {
       padding: 8px 24px;
       border-radius: 8px;
-      background: var(--secondary-grey);
       color: var(--white);
       font-size: 12px;
       font-weight: 600;
     }
   }
 }
+.taken {background: var(--secondary-grey)}
+.available {background: var(--general-red)}
