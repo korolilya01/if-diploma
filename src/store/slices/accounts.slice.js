@@ -11,8 +11,13 @@ const accountsSlice = createSlice({
     addAccountSlice: (state, action) => {
       state.push(action.payload);
     },
+    //for changing account info
+    updateAccountSlice: (state, action) => {
+      const { index, updatedAccount } = action.payload;
+      state[index] = updatedAccount;
+    },
   },
 });
 
-export const { addAccountSlice } = accountsSlice.actions;
+export const { addAccountSlice, updateAccountSlice } = accountsSlice.actions;
 export const accountsReducer = accountsSlice.reducer;

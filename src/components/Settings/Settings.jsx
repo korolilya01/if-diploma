@@ -2,8 +2,11 @@ import React from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { authSelector } from '../../store/selectors/authorization.selector';
 import { registration } from '../../store/slices/authorization.slice';
+import { updateAccountSlice } from '../../store/slices/accounts.slice';
+
+import { authSelector } from '../../store/selectors/authorization.selector';
+import { getAccountsSelector } from '../../store/selectors/accounts.selector';
 
 import { Button } from '../Button';
 import { Input } from '../Input';
@@ -15,16 +18,35 @@ import classNames from 'classnames';
 
 export const Settings = () => {
   const state = useSelector(authSelector);
+  const accounts = useSelector(getAccountsSelector);
   const dispatch = useDispatch();
 
+  const abc = accounts.findIndex((item) => item.name === state.name);
+  console.log(abc);
   const onChange = (e) => {
     const value = e.target.value;
     const name = e.target.name;
+
     dispatch(registration({ [name]: value }));
+
+    const updatedAccounts = [...accounts]; //copy of accounts array
+    updatedAccounts[abc] = { ...updatedAccounts[abc], [name]: value }; // Update property
+    dispatch(
+      updateAccountSlice({ index: abc, updatedAccount: updatedAccounts[abc] }), //push to new array
+    );
   };
 
   const onClick = () => {
     dispatch(registration({ ['password']: state.newPassword }));
+
+    const updatedAccounts = [...accounts];
+    updatedAccounts[abc] = {
+      ...updatedAccounts[abc],
+      ['password']: state.newPassword,
+    };
+    dispatch(
+      updateAccountSlice({ index: abc, updatedAccount: updatedAccounts[abc] }),
+    );
   };
 
   return (
