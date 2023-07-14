@@ -23,7 +23,6 @@ export const AllBooksCard = ({ ...item }) => {
     addChosenBook,
   } = item;
   const [bookName] = name.split(':'); //cut the book's name to ':'
-
   const bookStatus = useSelector(getBookStatusSelector);
 
   return (

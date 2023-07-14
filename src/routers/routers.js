@@ -15,6 +15,7 @@ import { Settings } from '../components/Settings';
 import { SignUp } from '../components/Authorization/SignUp';
 import { UserPage } from '../components/UserPage';
 import { YourOrders } from '../components/YourOrders';
+import { UserSearchBooks } from '../components/UserSearchBooks';
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -26,6 +27,7 @@ export const router = createBrowserRouter(
       </Route>
       <Route element={<UserPage />}>
         <Route path="/allbooks" element={<Allbooks />} />
+        <Route path="/userBooks" element={<UserSearchBooks />} />
         <Route path="/bookPage/:id" element={<BookPage />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/orders" element={<YourOrders />} />

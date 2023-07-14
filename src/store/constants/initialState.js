@@ -11,4 +11,5 @@ export const INITIAL_STATE = {
   },
   rating: [],
   status: {},
+  userSearchBooksInitial: [],
 };

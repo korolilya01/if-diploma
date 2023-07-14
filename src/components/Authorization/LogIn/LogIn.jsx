@@ -34,14 +34,14 @@ export const LogIn = () => {
     e.preventDefault();
 
     //name and password checking
-    const userFound = accounts.some(
+    const userFound = accounts.find(
       (account) =>
         account.name === formState.name && //an account from redux after registration
         account.password === formState.password, //fromState from state, always clean
     );
 
     if (userFound) {
-      dispatch(registration(formState));
+      dispatch(registration(userFound));
       navigate('/allbooks');
     } else {
       setPasswordError(true);

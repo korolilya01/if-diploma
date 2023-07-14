@@ -3,11 +3,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { addBookStatusSlice } from '../../store/slices/bookStatus.slice';
-import {
-  addWaitingBooks,
-  addYourBooks,
-  removeYourBooksSlice,
-} from '../../store/slices/accounts.slice';
+import { removeYourBooksSlice } from '../../store/slices/accounts.slice';
 
 import { authSelector } from '../../store/selectors/authorization.selector';
 import { getAccountsSelector } from '../../store/selectors/accounts.selector';
@@ -15,6 +11,8 @@ import { getBookStatusSelector } from '../../store/selectors/bookStatus.selector
 
 import { AllBooksCard } from '../Allbooks/Card';
 import { YourBooksCard } from '../YourOrders/Card';
+
+import { addBook } from '../../services/bookUtils';
 
 import './BooksContainer.scss';
 
@@ -37,23 +35,8 @@ export const BooksContainer = ({
     dispatch(addBookStatusSlice({ id: item.id, status: false })); //add a status 'available' to the book
   };
 
-  const addBook = (book) => {
-    const user = yourBooksList.find((item) => auth.email === item.email); //find an object with data for during user
-
-    const booksList = user.yourBooks; // checking yourBooksList
-    const idNew = book.id;
-
-    //check book status
-    if (status[idNew]) {
-      //check if the book in the list
-      if (!booksList.includes(book)) {
-        dispatch(addWaitingBooks({ name: auth.name, payload: book })); //add a book to 'Waiting for' list
-      }
-      return; //if the book is already in the list, do nothing
-    }
-
-    dispatch(addYourBooks({ name: auth.name, payload: book })); //add a book to 'List of your books' list
-    dispatch(addBookStatusSlice({ id: book.id, status: true })); //add a status 'taken' to the book if during user is first
+  const addBookToListOfYourBooks = (book) => {
+    addBook(dispatch, yourBooksList, auth, status, book);
   };
 
   return (
@@ -64,8 +47,11 @@ export const BooksContainer = ({
           array.map((item) => {
             return (
               <div key={item.id} className={className}>
-                {title === 'All books' ? (
-                  <AllBooksCard {...item} addChosenBook={() => addBook(item)} />
+                {title === 'All books' || title === 'Searching result' ? (
+                  <AllBooksCard
+                    {...item}
+                    addChosenBook={() => addBookToListOfYourBooks(item)}
+                  />
                 ) : (
                   <YourBooksCard
                     {...item}
