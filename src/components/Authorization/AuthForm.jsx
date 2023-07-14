@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom';
 import { Button } from '../Button';
 import { Icon } from '../Icon';
 import { Input } from '../Input';
+import { Notification } from '../Notification';
 
 import './AuthForm.scss';
 import classNames from 'classnames';
-import { Notification } from '../Notification';
 
 export const AuthForm = ({
   title,

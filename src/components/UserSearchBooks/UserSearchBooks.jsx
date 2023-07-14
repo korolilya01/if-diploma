@@ -9,5 +9,11 @@ import { BooksContainer } from '../BooksContainer';
 export const UserSearchBooks = () => {
   const books = useSelector(userSearchBooksSelector);
 
-  return <BooksContainer array={books} title="Searching result" />;
+  return (
+    <BooksContainer
+      message="Books not found"
+      array={books}
+      title="Searching result"
+    />
+  );
 };

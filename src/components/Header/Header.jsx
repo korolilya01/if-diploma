@@ -43,7 +43,7 @@ export const Header = ({ children }) => {
   return (
     <header className="header">
       <Icon className="header__logo" iconHref="#logo" />
-      <form onSubmit={handleSubmit}>
+      <form className="header__form" onSubmit={handleSubmit}>
         <Input
           id="search"
           labelId="search"
