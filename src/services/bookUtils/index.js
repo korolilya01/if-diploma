@@ -11,11 +11,18 @@ export const addBook = (dispatch, yourBooksList, auth, status, book) => {
   const idNew = book.id;
 
   if (!status[idNew]) {
+    //original value is false, on the first iteration gets here
     dispatch(addYourBooks({ name: auth.name, payload: book }));
     dispatch(addBookStatusSlice({ id: book.id, status: true }));
-  } else if (booksList.includes(book)) {
-    return;
-  } else if (!booksWaitingList.includes(book)) {
+  } else if (
+    booksList.some((item) => JSON.stringify(item) === JSON.stringify(book))
+  ) {
+    return null;
+  } else if (
+    !booksWaitingList.some(
+      (item) => JSON.stringify(item) === JSON.stringify(book),
+    )
+  ) {
     dispatch(addWaitingBooks({ name: auth.name, payload: book }));
   }
 };

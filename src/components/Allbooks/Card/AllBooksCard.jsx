@@ -37,7 +37,6 @@ export const AllBooksCard = ({ ...item }) => {
           length,
           released,
           description,
-          bookName,
         }}
       >
         <img className="allBooksCard__img" src={imageUrl} alt={name} />

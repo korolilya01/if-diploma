@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { useGetUserSearchBooksQuery } from '../../store/slices/api.slice';
@@ -10,6 +10,7 @@ import { Icon } from '../Icon';
 import { Input } from '../Input';
 
 import './Header.scss';
+import { authSelector } from '../../store/selectors/authorization.selector';
 
 export const Header = ({ children }) => {
   const [searchParams, setSearchParams] = useState(null);
@@ -18,6 +19,15 @@ export const Header = ({ children }) => {
   const navigate = useNavigate();
 
   const { data: books } = useGetUserSearchBooksQuery(searchParams);
+
+  const userData = useSelector(authSelector);
+
+  const isLogIn = () => {
+    if (!userData.name) {
+      navigate('/checkAccount');
+    }
+    return null;
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -42,9 +52,14 @@ export const Header = ({ children }) => {
 
   return (
     <header className="header">
-      <Icon className="header__logo" iconHref="#logo" />
+      <Icon
+        onClick={() => navigate('/allbooks')}
+        className="header__logo"
+        iconHref="#logo"
+      />
       <form className="header__form" onSubmit={handleSubmit}>
         <Input
+          onChange={isLogIn}
           id="search"
           labelId="search"
           inputClassName="header__search"

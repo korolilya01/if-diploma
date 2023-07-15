@@ -1,16 +1,26 @@
 .bookPage {
-  border: 1px solid black;
   display: flex;
   border-radius: 16px;
   background: var(--white);
   margin: 80px 0;
   padding: 32px 76px 26px 32px;
   gap: 32px;
+  @media (max-width: 850px) {
+    flex-direction: column;
+  }
   &__img {
     width: 300px;
     height: 454px;
     border-radius: 8px;
     border: 1px solid var(--secondary-grey);
+    @media (max-width: 1024px) {
+      width: 250px;
+      height: 354px;
+    }
+    @media (max-width: 768px) {
+      width: 200px;
+      height: 300px;
+    }
   }
   &__wrap {
     display: flex;
@@ -21,18 +31,34 @@
       font-size: 40px;
       font-weight: 700;
       margin-bottom: 12px;
+      @media (max-width: 1024px) {
+        font-size: 28px;
+        margin-bottom: 8px;
+      }
+      @media (max-width: 768px) {
+        font-size: 24px;
+        margin-bottom: 8px;
+      }
     }
     &-author {
       color: var(--general-red);
       font-size: 24px;
       font-weight: 600;
       margin-bottom: 24px;
+      @media (max-width: 1024px) {
+        font-size: 20px;
+        margin-bottom: 16px;
+      }
     }
     &-dopInfo {
       color: var(--grey);
       font-size: 18px;
       font-weight: 400;
       margin-bottom: 10px;
+      @media (max-width: 1024px) {
+        font-size: 14px;
+        margin-bottom: 8px;
+      }
     }
     &-order {
       border-radius: 8px;
@@ -42,15 +68,28 @@
       font-size: 20px;
       font-weight: 600;
       margin-bottom: 58px;
+      @media (max-width: 1024px) {
+        padding: 8px 48px;
+        font-size: 16px;
+        margin-bottom: 48px;
+      }
     }
     &-titleDesc {
       font-size: 28px;
       font-weight: 700;
       margin-bottom: 12px;
+      @media (max-width: 1024px) {
+        font-size: 20px;
+        margin-bottom: 8px;
+      }
     }
     &-desc {
       font-size: 16px;
       margin-bottom: 16px;
+      @media (max-width: 1024px) {
+        font-size: 14px;
+        margin-bottom: 12px;
+      }
     }
     &-showMore {
       border-radius: 8px;
@@ -60,8 +99,16 @@
       padding: 8px 24px;
       width: fit-content;
       font-weight: 600;
+      @media (max-width: 1024px) {
+        font-size: 10px;
+        padding: 8px 16px;
+      }
     }
   }
 }
-.taken {background: var(--secondary-grey)}
-.available {background: var(--general-red)}
+.taken {
+  background: var(--secondary-grey);
+}
+.available {
+  background: var(--general-red);
+}

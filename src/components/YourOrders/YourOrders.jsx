@@ -7,8 +7,6 @@ import { getAccountsSelector } from '../../store/selectors/accounts.selector';
 
 import { BooksContainer } from '../BooksContainer';
 
-import './YourOrders.scss';
-
 export const YourOrders = () => {
   const accounts = useSelector(getAccountsSelector);
   const auth = useSelector(authSelector);

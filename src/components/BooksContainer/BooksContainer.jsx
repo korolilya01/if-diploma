@@ -19,7 +19,6 @@ import './BooksContainer.scss';
 export const BooksContainer = ({
   title,
   array,
-  className,
   children,
   message,
   buttonName,
@@ -29,7 +28,6 @@ export const BooksContainer = ({
   const yourBooksList = useSelector(getAccountsSelector);
   const auth = useSelector(authSelector);
   const status = useSelector(getBookStatusSelector);
-
   const removeBook = (item) => {
     dispatch(removeYourBooksSlice(item.id)); //remove a book from during user's list
     dispatch(addBookStatusSlice({ id: item.id, status: false })); //add a status 'available' to the book
@@ -46,20 +44,22 @@ export const BooksContainer = ({
         {array.length !== 0 ? (
           array.map((item) => {
             return (
-              <div key={item.id} className={className}>
+              <>
                 {title === 'All books' || title === 'Searching result' ? (
                   <AllBooksCard
+                    key={item.id}
                     {...item}
                     addChosenBook={() => addBookToListOfYourBooks(item)}
                   />
                 ) : (
                   <YourBooksCard
+                    key={item.id}
                     {...item}
                     buttonName={buttonName}
                     removeChosenBook={() => removeBook(item)}
                   />
                 )}
-              </div>
+              </>
             );
           })
         ) : (
