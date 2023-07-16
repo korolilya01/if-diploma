@@ -33,6 +33,10 @@
       @include status;
       border: 2px solid var(--general-blue);
     }
+    &-taken {
+      color: var(--secondary-grey);
+      font-size: 10px;
+    }
     &-title {
       font-size: 14px;
       font-weight: 700;

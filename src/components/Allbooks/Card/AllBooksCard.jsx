@@ -4,6 +4,8 @@ import { useSelector } from 'react-redux';
 
 import { Link } from 'react-router-dom';
 
+import { authSelector } from '../../../store/selectors/authorization.selector';
+import { getAccountsSelector } from '../../../store/selectors/accounts.selector';
 import { getBookStatusSelector } from '../../../store/selectors/bookStatus.selector';
 
 import { Button } from '../../Button';
@@ -23,7 +25,21 @@ export const AllBooksCard = ({ ...item }) => {
     addChosenBook,
   } = item;
   const [bookName] = name.split(':'); //cut the book's name to ':'
-  const bookStatus = useSelector(getBookStatusSelector);
+
+  const accounts = useSelector(getAccountsSelector); // accounts array
+  const auth = useSelector(authSelector); //current user's data
+  const bookStatus = useSelector(getBookStatusSelector); //book status
+
+  let ownedBook = null;
+  let bookOwner = null;
+
+  for (let i = 0; i < accounts.length; i++) {
+    ownedBook = accounts[i].yourBooks.find((item) => item.id === id);
+    bookOwner = accounts[i];
+    if (ownedBook) {
+      break;
+    }
+  }
 
   return (
     <div className="allBooksCard__books">
@@ -46,6 +62,11 @@ export const AllBooksCard = ({ ...item }) => {
           <div className="allBooksCard__desc-statusTaken">Taken</div>
         ) : (
           <div className="allBooksCard__desc-statusAvailable">Available</div>
+        )}
+        {bookStatus[id] && (
+          <p className="allBooksCard__desc-taken">
+            Bookholder: {bookOwner.name === auth.name ? 'You' : bookOwner.name}
+          </p>
         )}
         <p className="allBooksCard__desc-title">{bookName}</p>
         <p className="allBooksCard__desc-author">by {author}</p>
