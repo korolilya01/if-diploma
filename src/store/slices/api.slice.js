@@ -9,7 +9,7 @@ export const apiSlice = createApi({
   endpoints: (builder) => ({
     getUserSearchBooks: builder.query({
       query: (search) => {
-        return `?${search}`;
+        return `?search=${search}`;
       },
     }),
   }),

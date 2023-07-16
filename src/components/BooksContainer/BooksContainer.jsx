@@ -15,6 +15,7 @@ import { YourBooksCard } from '../YourOrders/Card';
 import { addBook } from '../../services/bookUtils';
 
 import './BooksContainer.scss';
+import classNames from 'classnames';
 
 export const BooksContainer = ({
   title,
@@ -37,15 +38,22 @@ export const BooksContainer = ({
     addBook(dispatch, yourBooksList, auth, status, book);
   };
 
+  const chooseTitle = title === 'All books' || title === 'Searching result';
+
   return (
     <section className="booksContainer">
       <h2 className="booksContainer__title">{title}</h2>
-      <div className="booksContainer__container">
+      <div
+        className={classNames(
+          'booksContainer__container',
+          chooseTitle && 'booksContainer__container-all',
+        )}
+      >
         {array.length !== 0 ? (
           array.map((item) => {
             return (
               <>
-                {title === 'All books' || title === 'Searching result' ? (
+                {chooseTitle ? (
                   <AllBooksCard
                     key={item.id}
                     {...item}

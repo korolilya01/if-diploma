@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import { BooksContainer } from '../BooksContainer';
 import { Button } from '../Button';
@@ -6,33 +6,51 @@ import { Button } from '../Button';
 import { getBooks } from '../../services';
 
 import './Allbooks.scss';
-import classNames from 'classnames';
 
 export const Allbooks = () => {
   const [books, setBooks] = useState([]);
-  const [showMore, setShowMore] = useState(false);
 
-  useEffect(() => {
-    getBooks().then((response) => setBooks(response)); //getting books from server
+  const calculateBookPerRow = useCallback(() => {
+    if (window.innerWidth > 1332) {
+      return 4;
+    } else if (window.innerWidth <= 1331 && window.innerWidth > 1064) {
+      return 3;
+    } else if (window.innerWidth <= 1064 && window.innerWidth > 787) {
+      return 2;
+    } else {
+      return 1;
+    }
   }, []);
 
+  const [bookPerRow, setBookPerRow] = useState(calculateBookPerRow());
+
+  useEffect(() => {
+    getBooks()
+      .then((response) => setBooks(response))
+      .catch((error) => console.log(error)); //getting books from server
+
+    const handleResize = () => {
+      setBookPerRow(calculateBookPerRow());
+    };
+
+    window.addEventListener('resize', handleResize);
+  }, [calculateBookPerRow]);
+
   const showMoreBooks = () => {
-    setShowMore(true);
-  };
-  const showLessBooks = () => {
-    setShowMore(false);
+    setBookPerRow((prevState) => prevState + bookPerRow);
   };
 
+  const newBooks = books.slice(0, bookPerRow);
+
   return (
-    <BooksContainer array={books} title="All books">
-      <Button
-        onClick={!showMore ? showMoreBooks : showLessBooks}
-        className={classNames(
-          'allBooks__button',
-          !showMore ? 'allBooks__button-more' : 'allBooks__button-less',
-        )}
-        content={!showMore ? 'Show more' : 'Show less'}
-      />
+    <BooksContainer message="Loading ..." array={newBooks} title="All books">
+      {newBooks.length !== books.length && (
+        <Button
+          onClick={showMoreBooks}
+          className="allBooks__button"
+          content="Show more"
+        />
+      )}
     </BooksContainer>
   );
 };
