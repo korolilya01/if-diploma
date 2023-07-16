@@ -5,7 +5,6 @@ import { persistReducer } from 'redux-persist';
 import { accountsReducer } from './accounts.slice';
 import { apiSlice } from './api.slice';
 import { authReducer } from './authorization.slice';
-import { bookRatingReducer } from './rating.slice';
 import { bookStatusReducer } from './bookStatus.slice';
 import { userSearchBooksReducer } from './userSearchBooks.slice';
 
@@ -21,7 +20,6 @@ export const rootReducer = persistReducer(
     [apiSlice.reducerPath]: apiSlice.reducer,
     accounts: accountsReducer,
     authorization: authReducer,
-    bookRating: bookRatingReducer,
     bookStatus: bookStatusReducer,
     userSearchBooks: userSearchBooksReducer,
   }),

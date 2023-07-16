@@ -9,7 +9,6 @@ export const INITIAL_STATE = {
     yourBooks: [],
     waitingBooks: [],
   },
-  rating: [],
   status: {},
   userSearchBooksInitial: [],
 };

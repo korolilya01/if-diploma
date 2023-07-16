@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { useSelector } from 'react-redux';
 
@@ -9,11 +9,16 @@ import { getAccountsSelector } from '../../../store/selectors/accounts.selector'
 import { getBookStatusSelector } from '../../../store/selectors/bookStatus.selector';
 
 import { Button } from '../../Button';
+import { Notification } from '../../Notification';
+import { Rating } from '../../Rating';
+
+import { checkBookInList } from '../../../services/bookOwner';
 
 import './AllBookCards.scss';
 import classNames from 'classnames';
 
 export const AllBooksCard = ({ ...item }) => {
+  const [showNotification, setShowNotification] = useState(false);
   const {
     id,
     imageUrl,
@@ -30,16 +35,20 @@ export const AllBooksCard = ({ ...item }) => {
   const auth = useSelector(authSelector); //current user's data
   const bookStatus = useSelector(getBookStatusSelector); //book status
 
-  let ownedBook = null;
-  let bookOwner = null;
+  const [isBookInYourList, isBookInWaitingList, bookOwner] = checkBookInList(
+    accounts,
+    id,
+  );
 
-  for (let i = 0; i < accounts.length; i++) {
-    ownedBook = accounts[i].yourBooks.find((item) => item.id === id);
-    bookOwner = accounts[i];
-    if (ownedBook) {
-      break;
+  const onClick = () => {
+    addChosenBook();
+    if (isBookInYourList || isBookInWaitingList) {
+      setShowNotification(true);
+      setTimeout(() => {
+        setShowNotification(false);
+      }, 2000);
     }
-  }
+  };
 
   return (
     <div className="allBooksCard__books">
@@ -57,6 +66,7 @@ export const AllBooksCard = ({ ...item }) => {
       >
         <img className="allBooksCard__img" src={imageUrl} alt={name} />
       </Link>
+      {showNotification && <Notification message="The book in your list" />}
       <div className="allBooksCard__desc">
         {bookStatus[id] /*checking if the book is taken*/ ? (
           <div className="allBooksCard__desc-statusTaken">Taken</div>
@@ -70,9 +80,9 @@ export const AllBooksCard = ({ ...item }) => {
         )}
         <p className="allBooksCard__desc-title">{bookName}</p>
         <p className="allBooksCard__desc-author">by {author}</p>
-        <div className="allBooksCard__desc-rating"></div>
+        <Rating className="allBooksCard__desc-rating" id={id} />
         <Button
-          onClick={addChosenBook}
+          onClick={onClick}
           className={classNames(
             'allBooksCard__desc-order',
             bookStatus[id] ? 'button-taken' : 'button-available',

@@ -3,6 +3,7 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { Button } from '../../Button';
+import { Rating } from '../../Rating';
 
 import './YourBooksCard.scss';
 
@@ -40,7 +41,7 @@ export const YourBooksCard = ({ ...item }) => {
       </Link>
       <p className="yourBooksCard__title">{bookName}</p>
       <p className="yourBooksCard__author">by {author}</p>
-      <div className="yourBooksCard__rating"></div>
+      <Rating className="yourBooksCard__rating" id={id} />
       {buttonName === 'Check status' ? (
         <Button
           onClick={() => navigate(`/bookStatus/:${[id]}`)}
