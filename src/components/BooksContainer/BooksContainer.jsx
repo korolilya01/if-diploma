@@ -29,8 +29,9 @@ export const BooksContainer = ({
   const yourBooksList = useSelector(getAccountsSelector);
   const auth = useSelector(authSelector);
   const status = useSelector(getBookStatusSelector);
-  const removeBook = (item) => {
-    dispatch(removeYourBooksSlice(item.id)); //remove a book from during user's list
+
+  const removeBookFromListOfYourBooks = (item) => {
+    dispatch(removeYourBooksSlice(item.id)); //remove a book from current user's list
     dispatch(addBookStatusSlice({ id: item.id, status: false })); //add a status 'available' to the book
   };
 
@@ -64,7 +65,7 @@ export const BooksContainer = ({
                     key={item.id}
                     {...item}
                     buttonName={buttonName}
-                    removeChosenBook={() => removeBook(item)}
+                    removeChosenBook={() => removeBookFromListOfYourBooks(item)}
                   />
                 )}
               </>

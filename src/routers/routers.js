@@ -16,6 +16,7 @@ import { SignUp } from '../components/Authorization/SignUp';
 import { UserPage } from '../components/UserPage';
 import { YourOrders } from '../components/YourOrders';
 import { UserSearchBooks } from '../components/UserSearchBooks';
+import { StatusPage } from '../components/YourOrders/StatusPage';
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -29,6 +30,7 @@ export const router = createBrowserRouter(
         <Route path="/allbooks" element={<Allbooks />} />
         <Route path="/userBooks" element={<UserSearchBooks />} />
         <Route path="/bookPage/:id" element={<BookPage />} />
+        <Route path="/bookStatus/:id" element={<StatusPage />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/orders" element={<YourOrders />} />
       </Route>

@@ -54,7 +54,7 @@ export const AllBooksCard = ({ ...item }) => {
           onClick={addChosenBook}
           className={classNames(
             'allBooksCard__desc-order',
-            bookStatus[id] ? 'taken' : 'available',
+            bookStatus[id] ? 'button-taken' : 'button-available',
           )}
           content="Order"
         />

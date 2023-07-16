@@ -1,12 +1,14 @@
 import React from 'react';
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { Button } from '../../Button';
 
 import './YourBooksCard.scss';
 
 export const YourBooksCard = ({ ...item }) => {
+  const navigate = useNavigate();
+
   const {
     id,
     imageUrl,
@@ -39,11 +41,19 @@ export const YourBooksCard = ({ ...item }) => {
       <p className="yourBooksCard__title">{bookName}</p>
       <p className="yourBooksCard__author">by {author}</p>
       <div className="yourBooksCard__rating"></div>
-      <Button
-        onClick={removeChosenBook}
-        className="yourBooksCard__button"
-        content={buttonName}
-      />
+      {buttonName === 'Check status' ? (
+        <Button
+          onClick={() => navigate(`/bookStatus/:${[id]}`)}
+          className="yourBooksCard__button"
+          content={buttonName}
+        />
+      ) : (
+        <Button
+          onClick={removeChosenBook}
+          className="yourBooksCard__button"
+          content={buttonName}
+        />
+      )}
     </div>
   );
 };

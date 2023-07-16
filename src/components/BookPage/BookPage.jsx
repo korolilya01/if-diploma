@@ -16,6 +16,8 @@ import './BookPage.scss';
 import classNames from 'classnames';
 
 export const BookPage = () => {
+  const dispatch = useDispatch();
+
   const [isShowMore, setIsShowMore] = useState(true);
 
   const location = useLocation();
@@ -27,7 +29,6 @@ export const BookPage = () => {
     setIsShowMore(false);
   };
 
-  const dispatch = useDispatch();
   const yourBooksList = useSelector(getAccountsSelector);
   const auth = useSelector(authSelector);
   const bookStatus = useSelector(getBookStatusSelector);
@@ -50,7 +51,7 @@ export const BookPage = () => {
           onClick={() => addBookToListOfYourBooks(state)}
           className={classNames(
             'bookPage__wrap-order',
-            bookStatus[id] ? 'taken' : 'available',
+            bookStatus[id] ? 'button-taken' : 'button-available',
           )}
           content="Order"
         />

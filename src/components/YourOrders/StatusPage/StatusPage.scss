@@ -1,0 +1,101 @@
+.statusPage {
+  display: flex;
+  border-radius: 16px;
+  background: var(--white);
+  margin: 80px 0;
+  padding: 32px 76px 26px 32px;
+  gap: 32px;
+  @media (max-width: 850px) {
+    flex-direction: column;
+    gap: 16px;
+  }
+  &__img {
+    width: 300px;
+    height: 454px;
+    border-radius: 8px;
+    border: 1px solid var(--secondary-grey);
+    @media (max-width: 1024px) {
+      width: 250px;
+      height: 354px;
+    }
+    @media (max-width: 768px) {
+      width: 200px;
+      height: 300px;
+    }
+  }
+  &__container {
+    display: flex;
+    gap: 24px;
+    flex-direction: column;
+    @media (max-width: 850px) {
+      gap: 16px;
+    }
+    &-reiting {
+    }
+    &-title {
+      font-size: 40px;
+      font-weight: 700;
+      @media (max-width: 1024px) {
+        font-size: 28px;
+      }
+      @media (max-width: 768px) {
+        font-size: 24px;
+      }
+    }
+    &-status {
+      width: fit-content;
+      border-radius: 24px;
+      padding: 4px 24px;
+      font-size: 22px;
+      @media (max-width: 768px) {
+        font-size: 18px;
+      }
+      @media (max-width: 768px) {
+        font-size: 14px;
+      }
+    }
+    &-author {
+      color: var(--general-red);
+      font-size: 24px;
+      font-weight: 600;
+      @media (max-width: 1024px) {
+        font-size: 20px;
+      }
+    }
+    &-dopInfo {
+      color: var(--grey);
+      font-size: 18px;
+      font-weight: 400;
+      @media (max-width: 1024px) {
+        font-size: 14px;
+      }
+    }
+    &-buttons {
+      display: flex;
+      gap: 12px;
+    }
+  }
+  &__button {
+    background-color: var(--general-red);
+    color: var(--white);
+    padding: 8px 48px;
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: 500;
+    @media (max-width: 1024px) {
+      font-size: 16px;
+    }
+    @media (max-width: 480px) {
+      font-size: 14px;
+    }
+  }
+}
+.taken {
+  border: 2px solid var(--secondary-red);
+}
+.available {
+  border: 2px solid var(--general-blue);
+}
+.disabled {
+  background-color: var(--secondary-grey);
+}

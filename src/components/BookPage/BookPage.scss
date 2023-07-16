@@ -37,7 +37,6 @@
       }
       @media (max-width: 768px) {
         font-size: 24px;
-        margin-bottom: 8px;
       }
     }
     &-author {
@@ -106,9 +105,9 @@
     }
   }
 }
-.taken {
+.button-taken {
   background: var(--secondary-grey);
 }
-.available {
+.button-available {
   background: var(--general-red);
 }

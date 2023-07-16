@@ -11,7 +11,7 @@ export const YourOrders = () => {
   const accounts = useSelector(getAccountsSelector);
   const auth = useSelector(authSelector);
 
-  const suchUser = accounts.find((item) => auth.email === item.email); //find an object for during user
+  const suchUser = accounts.find((item) => auth.email === item.email); //find an object for current user
 
   const yourBooksList = suchUser.yourBooks;
   const waitingBooksList = suchUser.waitingBooks;
