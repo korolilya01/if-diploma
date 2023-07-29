@@ -11,6 +11,7 @@ import { authSelector } from '../../../store/selectors/authorization.selector';
 import { AuthForm } from '../AuthForm';
 
 import { config } from './config';
+import { routeLinks } from '../../../constants/routeLinks';
 
 export const SignUp = () => {
   const dispatch = useDispatch();
@@ -27,7 +28,7 @@ export const SignUp = () => {
   const sendData = (e) => {
     e.preventDefault();
     dispatch(addAccountSlice(state));
-    navigate('/login');
+    navigate(routeLinks.login);
   };
 
   return (

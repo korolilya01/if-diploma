@@ -9,8 +9,8 @@ import { authSelector } from '../../store/selectors/authorization.selector';
 import { getAccountsSelector } from '../../store/selectors/accounts.selector';
 import { getBookStatusSelector } from '../../store/selectors/bookStatus.selector';
 
-import { AllBooksCard } from '../Allbooks/Card';
-import { YourBooksCard } from '../YourOrders/Card';
+import { AllBooksCard } from '../sections/Allbooks/Card';
+import { YourBooksCard } from '../sections/YourOrders/Card';
 
 import { addBook } from '../../services/bookUtils';
 

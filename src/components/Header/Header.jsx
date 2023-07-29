@@ -6,11 +6,14 @@ import { useNavigate } from 'react-router-dom';
 import { useGetUserSearchBooksQuery } from '../../store/slices/api.slice';
 import { userSearchBooks } from '../../store/slices/userSearchBooks.slice';
 
-import { Icon } from '../Icon';
-import { Input } from '../Input';
+import { authSelector } from '../../store/selectors/authorization.selector';
+
+import { Icon } from '../Utils/Icon';
+import { Input } from '../Utils/Input';
+
+import { routeLinks } from '../../constants/routeLinks';
 
 import './Header.scss';
-import { authSelector } from '../../store/selectors/authorization.selector';
 
 export const Header = ({ children }) => {
   const [searchParams, setSearchParams] = useState(null);
@@ -24,7 +27,7 @@ export const Header = ({ children }) => {
 
   const isLogIn = () => {
     if (!userData.name) {
-      navigate('/checkAccount');
+      navigate(routeLinks.checkAccount);
     }
     return null;
   };
@@ -33,7 +36,7 @@ export const Header = ({ children }) => {
     e.preventDefault();
     const searchInfo = e.target.search.value;
     setSearchParams(searchInfo);
-    navigate('/userBooks');
+    navigate(routeLinks.userBooks);
   };
 
   // Filter the books based on the search queries
@@ -53,7 +56,7 @@ export const Header = ({ children }) => {
   return (
     <header className="header">
       <Icon
-        onClick={() => navigate('/allbooks')}
+        onClick={() => navigate(routeLinks.allBooks)}
         className="header__logo"
         iconHref="#logo"
       />

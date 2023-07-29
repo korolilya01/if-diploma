@@ -10,6 +10,7 @@ import { getAccountsSelector } from '../../../store/selectors/accounts.selector'
 import { AuthForm } from '../AuthForm';
 
 import { config, initialState } from './config';
+import { routeLinks } from '../../../constants/routeLinks';
 
 export const LogIn = () => {
   const [formState, setFormState] = useState(initialState);
@@ -42,7 +43,7 @@ export const LogIn = () => {
 
     if (userFound) {
       dispatch(registration(userFound));
-      navigate('/allbooks');
+      navigate(routeLinks.allBooks);
     } else {
       setPasswordError(true);
       setTimeout(() => {

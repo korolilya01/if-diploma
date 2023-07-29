@@ -8,9 +8,9 @@ import { authSelector } from '../../store/selectors/authorization.selector';
 import { getBookStatusSelector } from '../../store/selectors/bookStatus.selector';
 import { getAccountsSelector } from '../../store/selectors/accounts.selector';
 
-import { Button } from '../Button';
-import { Notification } from '../Notification';
-import { Rating } from '../Rating';
+import { Button } from '../Utils/Button';
+import { Notification } from '../Utils/Notification';
+import { Rating } from '../Utils/Rating';
 
 import { addBook } from '../../services/bookUtils';
 import { checkBookInList } from '../../services/bookOwner';
@@ -27,7 +27,6 @@ export const BookPage = () => {
   const location = useLocation();
   const { state } = location;
   const { id, imageUrl, author, name, length, released, description } = state; //state destructuring
-  const pureDesc = description.replace(/<\/?p>/g, '').replace(/<br\/?>/g, ''); //deleted <p></p> and <br> from description
 
   const onClickShowMore = () => {
     setIsShowMore(false);
@@ -73,10 +72,14 @@ export const BookPage = () => {
         />
         {showNotification && <Notification message="The book in your list" />}
         <h3 className="bookPage__wrap-titleDesc">About book</h3>
-        <p className="bookPage__wrap-desc">
-          {/*cut paragraph if length more than 300*/}
-          {isShowMore ? pureDesc.substring(0, 300) + '...' : pureDesc}{' '}
-        </p>
+        <div
+          className="bookPage__wrap-desc"
+          dangerouslySetInnerHTML={{
+            __html: isShowMore
+              ? description.substring(0, 300) + '...'
+              : description,
+          }}
+        />
         {isShowMore && (
           <Button
             onClick={onClickShowMore}

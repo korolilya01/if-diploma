@@ -1,13 +1,13 @@
 import React from 'react';
 
+import { Container } from '../Utils/Container';
 import { FooterColumnLinks } from './FooterColumnLinks';
-import { Icon } from '../Icon';
+import { Icon } from '../Utils/Icon';
 
 import { columnLinks } from './utils/columnLinks';
 
-import classNames from 'classnames';
 import './Footer.scss';
-import { Container } from '../Container';
+import classNames from 'classnames';
 
 export const Footer = () => {
   const [firstColumnLinks, secondColumnLinks, thirdColumnLinks, ,] =
