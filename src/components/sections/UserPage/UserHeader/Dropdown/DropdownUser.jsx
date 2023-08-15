@@ -8,6 +8,8 @@ import { authSelector } from '../../../../../store/selectors/authorization.selec
 
 import { Button } from '../../../../Utils/Button';
 
+import { routeLinks } from '../../../../../constants/routeLinks';
+
 import './DropdownUser.scss';
 import classNames from 'classnames';
 
@@ -37,7 +39,7 @@ export const DropdownUser = ({ isVisible }) => {
             All books
           </Link>
           <Button
-            onClick={() => navigate('/')}
+            onClick={() => navigate(routeLinks.startPage)}
             className="dropdownUser__button"
             content="Log out"
             buttonName="logout"

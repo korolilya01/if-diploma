@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import { useGetUserSearchBooksQuery } from '../../store/slices/api.slice';
 import { userSearchBooks } from '../../store/slices/userSearchBooks.slice';
-
-import { authSelector } from '../../store/selectors/authorization.selector';
 
 import { Icon } from '../Utils/Icon';
 import { Input } from '../Utils/Input';
@@ -18,18 +16,23 @@ import './Header.scss';
 export const Header = ({ children }) => {
   const [searchParams, setSearchParams] = useState(null);
 
+  const location = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const { data: books } = useGetUserSearchBooksQuery(searchParams);
 
-  const userData = useSelector(authSelector);
-
-  const isLogIn = () => {
-    if (!userData.name) {
-      navigate(routeLinks.checkAccount);
+  const navigateToPage = (event) => {
+    if (location.pathname === routeLinks.startPage) {
+      if (event.type === 'change') {
+        navigate(routeLinks.checkAccount);
+      }
+      if (event.type === 'click') {
+        return null;
+      }
+    } else {
+      navigate(routeLinks.allBooks);
     }
-    return null;
   };
 
   const handleSubmit = (e) => {
@@ -39,7 +42,7 @@ export const Header = ({ children }) => {
     navigate(routeLinks.userBooks);
   };
 
-  // Filter the books based on the search queries
+  // Filtering books based on the search queries
   const filteredBooks = books?.filter((book) => {
     const { name, author } = book;
     const lowerSearchQuery = searchParams?.toLowerCase();
@@ -56,13 +59,13 @@ export const Header = ({ children }) => {
   return (
     <header className="header">
       <Icon
-        onClick={() => navigate(routeLinks.allBooks)}
+        onClick={navigateToPage}
         className="header__logo"
         iconHref="#logo"
       />
       <form className="header__form" onSubmit={handleSubmit}>
         <Input
-          onChange={isLogIn}
+          onChange={navigateToPage}
           id="search"
           labelId="search"
           inputClassName="header__search"

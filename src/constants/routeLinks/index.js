@@ -1,4 +1,5 @@
 export const routeLinks = {
+  startPage: '/',
   allBooks: '/allbooks',
   bookPage: '/bookPage',
   bookStatus: '/bookStatus',
